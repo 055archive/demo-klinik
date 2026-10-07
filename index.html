@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraGlow Aesthetic Clinic | Solusi Kulit Sehat, Cerah & Glowing</title>
+    <meta name="description" content="Klinik estetika terpercaya dengan dokter spesialis berpengalaman, teknologi modern bersertifikat FDA, dan perawatan personal untuk kulit impian Anda.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#FDF8F6',
+                            100: '#F2E8E5',
+                            200: '#EADDD7',
+                            300: '#E0A996',
+                            400: '#C97D60',
+                            500: '#B85D38',
+                            600: '#9B4522',
+                            gold: '#D4AF37',
+                            dark: '#1C1917',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 0.3; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .pulse-effect {
+            animation: pulse-ring 2.5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-[#FCFAF8] text-stone-800 font-sans antialiased selection:bg-brand-300 selection:text-white">
+
+    <!-- TOP PROMO BAR -->
+    <div class="bg-stone-900 text-stone-200 text-xs sm:text-sm py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span class="inline-block px-2 py-0.5 bg-brand-400 text-white rounded-full text-[10px] font-bold tracking-wider uppercase">Promo Bulan Ini</span>
+        <span>Diskon <strong>35% All Laser & Glow Facial</strong> untuk Pasien Pertama!</span>
+        <a href="#booking" class="underline text-brand-300 hover:text-white ml-2 hidden sm:inline">Klaim Promo &rarr;</a>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-40 glassmorphism border-b border-stone-200/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-full bg-stone-900 flex items-center justify-center text-brand-gold shadow-md">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-2xl font-bold tracking-tight text-stone-900 block leading-none">AuraGlow</span>
+                    <span class="text-[10px] tracking-[0.2em] uppercase font-semibold text-brand-600 block">Aesthetic Clinic</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-600">
+                <a href="#tentang" class="hover:text-brand-500 transition-colors">Tentang Kami</a>
+                <a href="#layanan" class="hover:text-brand-500 transition-colors">Layanan & Harga</a>
+                <a href="#dokter" class="hover:text-brand-500 transition-colors">Dokter Ahli</a>
+                <a href="#testimoni" class="hover:text-brand-500 transition-colors">Hasil Klien</a>
+                <a href="#faq" class="hover:text-brand-500 transition-colors">FAQ</a>
+                <a href="#lokasi" class="hover:text-brand-500 transition-colors">Lokasi</a>
+            </nav>
+
+            <!-- CTA Header -->
+            <div class="hidden sm:flex items-center gap-3">
+                <button onclick="openBookingModal('Konsultasi Dokter Umum')" class="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    <span>Reservasi Jadwal</span>
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-stone-700 hover:bg-stone-100" aria-label="Buka Menu">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-stone-200 px-6 py-4 space-y-3">
+            <a href="#tentang" class="block py-2 text-stone-700 font-medium hover:text-brand-500" onclick="toggleMobileMenu()">Tentang Kami</a>
+            <a href="#layanan" class="block py-2 text-stone-700 font-medium hover:text-brand-500" onclick="toggleMobileMenu()">Layanan & Harga</a>
+            <a href="#dokter" class="block py-2 text-stone-700 font-medium hover:text-brand-500" onclick="toggleMobileMenu()">Dokter Ahli</a>
+            <a href="#testimoni" class="block py-2 text-stone-700 font-medium hover:text-brand-500" onclick="toggleMobileMenu()">Hasil Klien</a>
+            <a href="#faq" class="block py-2 text-stone-700 font-medium hover:text-brand-500" onclick="toggleMobileMenu()">FAQ</a>
+            <a href="#lokasi" class="block py-2 text-stone-700 font-medium hover:text-brand-500" onclick="toggleMobileMenu()">Lokasi & Jam Buka</a>
+            <button onclick="openBookingModal('Konsultasi Cepat'); toggleMobileMenu();" class="w-full mt-2 py-3 bg-brand-500 text-white rounded-xl font-semibold flex items-center justify-center gap-2 shadow">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>Reservasi Sekarang</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Text Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-600 text-xs font-semibold tracking-wide">
+                        <i data-lucide="award" class="w-4 h-4"></i>
+                        Klinik Estetika Berizin Resmi Dinkes & BPOM
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-900 leading-[1.15]">
+                        Wujudkan Kulit Impian: <span class="italic text-brand-500 font-normal">Bersih, Cerah,</span> & Glowing Alami.
+                    </h1>
+
+                    <p class="text-stone-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                        Perawatan personal yang ditangani langsung oleh <strong>Dokter Spesialis Kulit & Estetika</strong> dengan teknologi medis bersertifikasi FDA internasional. Tanpa rasa sakit berlebih, hasil nyata terlihat sejak sesi pertama.
+                    </p>
+
+                    <!-- CTA Actions -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="openBookingModal('Konsultasi Dokter Gratis')" class="w-full sm:w-auto px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 group">
+                            <span>Konsultasi Dokter Gratis</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        <a href="#layanan" class="w-full sm:w-auto px-8 py-4 bg-white border border-stone-300 text-stone-800 hover:bg-stone-50 rounded-full font-semibold transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="sparkle" class="w-4 h-4 text-brand-gold"></i>
+                            <span>Lihat Daftar Harga</span>
+                        </a>
+                    </div>
+
+                    <!-- Social Proof / Badges -->
+                    <div class="pt-6 border-t border-stone-200/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-2xl font-bold text-stone-900 font-serif">12.000+</div>
+                            <div class="text-xs text-stone-500 font-medium mt-0.5">Pasien Puas</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-stone-900 font-serif flex items-center justify-center lg:justify-start gap-1">
+                                <span>4.9</span>
+                                <i data-lucide="star" class="w-4 h-4 fill-amber-400 text-amber-400"></i>
+                            </div>
+                            <div class="text-xs text-stone-500 font-medium mt-0.5">Google Rating (1.4k Ulasan)</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-stone-900 font-serif">100%</div>
+                            <div class="text-xs text-stone-500 font-medium mt-0.5">BPOM & FDA Approved</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Showcase Column -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Background Glow Accent -->
+                        <div class="absolute -inset-4 bg-gradient-to-tr from-brand-300 to-amber-200 rounded-3xl blur-2xl opacity-40"></div>
+                        
+                        <!-- Main Card -->
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100 aspect-[4/5]">
+                            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Perawatan Kulit Wajah di AuraGlow" 
+                                 class="w-full h-full object-cover">
+                            
+                            <!-- Floating Floating Card Badge -->
+                            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl glassmorphism border border-white/50 shadow-lg flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-500 text-white flex items-center justify-center shrink-0">
+                                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="text-sm font-bold text-stone-900">Garansi Steril & Aman</h4>
+                                    <p class="text-xs text-stone-600">Alat medis sekali pakai dan ruang perawatan privat ber-HEPA filter.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: KEUNGGULAN (USP) -->
+    <section id="tentang" class="py-20 bg-white border-y border-stone-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-500 text-xs font-bold uppercase tracking-widest block mb-2">Mengapa Memilih Kami</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900">Standar Medis Tertinggi untuk Keindahan Kulit Anda</h2>
+                <p class="text-stone-600 mt-3 text-sm sm:text-base">Kami tidak sekadar memberikan perawatan kosmetik, melainkan diagnosis mendalam berbasis sains kedokteran kulit.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Keunggulan 1 -->
+                <div class="p-6 rounded-2xl bg-stone-50 border border-stone-100 hover:border-brand-200 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-5 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <i data-lucide="stethoscope" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900 mb-2">Dokter Berpengalaman</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">Ditangani dokter spesialis lulusan universitas ternama dengan sertifikasi estetika global.</p>
+                </div>
+
+                <!-- Keunggulan 2 -->
+                <div class="p-6 rounded-2xl bg-stone-50 border border-stone-100 hover:border-brand-200 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-5 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <i data-lucide="scan" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900 mb-2">Skin Analyzer 3D Gratis</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">Cek kadar minyak, elastisitas, pigmen melasma, dan bakteri kulit sebelum perawatan dilakukan.</p>
+                </div>
+
+                <!-- Keunggulan 3 -->
+                <div class="p-6 rounded-2xl bg-stone-50 border border-stone-100 hover:border-brand-200 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-5 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900 mb-2">Teknologi Laser Terbaru</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">Menggunakan Picosecond Laser & HIFU generasi terkini dengan downtime minimal dan tanpa rasa sakit.</p>
+                </div>
+
+                <!-- Keunggulan 4 -->
+                <div class="p-6 rounded-2xl bg-stone-50 border border-stone-100 hover:border-brand-200 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-5 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900 mb-2">Tanpa Ketergantungan</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">Formula krim dan serum diformulasikan untuk memperbaiki skin barrier tanpa efek ketergantungan obat keras.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: LAYANAN & KATALOG HARGA -->
+    <section id="layanan" class="py-20 bg-[#FAF7F4]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-500 text-xs font-bold uppercase tracking-widest block mb-2">Katalog Treatment Pilihan</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900">Perawatan Populer & Harga Transparan</h2>
+                <p class="text-stone-600 mt-2 text-sm sm:text-base">Pilih perawatan yang sesuai dengan kondisi kulit Anda. Klik booking untuk memilih jadwal kunjungan via WhatsApp.</p>
+                
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-2 mt-8">
+                    <button onclick="filterCategory('all')" class="tab-btn active px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-stone-900 text-white" data-category="all">Semua Treatment</button>
+                    <button onclick="filterCategory('facial')" class="tab-btn px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-stone-600 border border-stone-200 hover:border-brand-400" data-category="facial">Facial & Peeling</button>
+                    <button onclick="filterCategory('laser')" class="tab-btn px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-stone-600 border border-stone-200 hover:border-brand-400" data-category="laser">Laser & Glow</button>
+                    <button onclick="filterCategory('acne')" class="tab-btn px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-stone-600 border border-stone-200 hover:border-brand-400" data-category="acne">Solusi Jerawat</button>
+                    <button onclick="filterCategory('anti-aging')" class="tab-btn px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-white text-stone-600 border border-stone-200 hover:border-brand-400" data-category="anti-aging">Anti-Aging & V-Shape</button>
+                </div>
+            </div>
+
+            <!-- Treatment Grid -->
+            <div id="treatmentGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Item 1: Diamond Glow Facial -->
+                <div class="treatment-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-cat="facial">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512290900672-1f0230a09be6?auto=format&fit=crop&w=800&q=80" alt="Diamond Glow Facial" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Favorit Pasien</span>
+                        <span class="absolute bottom-3 right-3 bg-stone-900/80 backdrop-blur text-white text-xs px-2.5 py-1 rounded-md font-medium flex items-center gap-1">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i> 60 Menit
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-xl text-stone-900 mb-1">Aura Diamond Microdermabrasion</h3>
+                            <p class="text-xs text-stone-500 mb-3">Eksfoliasi sel kulit mati, ekstraksi komedo tuntas, dan serum infus vitamin C murni.</p>
+                            <ul class="text-xs text-stone-600 space-y-1.5 mb-5">
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Wajah langsung cerah & mulus seketika</li>
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Membersihkan pori-pori tersumbat</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs line-through text-stone-400">Rp 450.000</span>
+                                <div class="text-xl font-bold text-brand-600">Rp 299.000</div>
+                            </div>
+                            <button onclick="openBookingModal('Aura Diamond Microdermabrasion')" class="px-4 py-2 bg-stone-900 hover:bg-brand-500 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                                Booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Pico Glow Laser -->
+                <div class="treatment-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-cat="laser">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Pico Glow Laser" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-brand-500 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Best Seller</span>
+                        <span class="absolute bottom-3 right-3 bg-stone-900/80 backdrop-blur text-white text-xs px-2.5 py-1 rounded-md font-medium flex items-center gap-1">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i> 45 Menit
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-xl text-stone-900 mb-1">Pico Toning Laser & Rejuvenation</h3>
+                            <p class="text-xs text-stone-500 mb-3">Teknologi laser ultrashort untuk memudarkan flek hitam, bekas jerawat, dan meratakan warna kulit.</p>
+                            <ul class="text-xs text-stone-600 space-y-1.5 mb-5">
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Memudarkan melasma & bintik hitam</li>
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Efek Glass Skin bercahaya alami</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs line-through text-stone-400">Rp 1.200.000</span>
+                                <div class="text-xl font-bold text-brand-600">Rp 749.000</div>
+                            </div>
+                            <button onclick="openBookingModal('Pico Toning Laser & Rejuvenation')" class="px-4 py-2 bg-stone-900 hover:bg-brand-500 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                                Booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Intensive Acne Care -->
+                <div class="treatment-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-cat="acne">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80" alt="Acne Care Protocol" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute bottom-3 right-3 bg-stone-900/80 backdrop-blur text-white text-xs px-2.5 py-1 rounded-md font-medium flex items-center gap-1">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i> 75 Menit
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-xl text-stone-900 mb-1">Acne Calming & Blue Light Therapy</h3>
+                            <p class="text-xs text-stone-500 mb-3">Kombinasi chemical peeling ringan, injeksi jerawat radang, dan terapi fotodinamik sinar biru.</p>
+                            <ul class="text-xs text-stone-600 space-y-1.5 mb-5">
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Membunuh bakteri P. acnes penyebab radang</li>
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Mengurangi produksi minyak berlebih</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs line-through text-stone-400">Rp 550.000</span>
+                                <div class="text-xl font-bold text-brand-600">Rp 385.000</div>
+                            </div>
+                            <button onclick="openBookingModal('Acne Calming & Blue Light Therapy')" class="px-4 py-2 bg-stone-900 hover:bg-brand-500 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                                Booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: HIFU V-Shape Lifting -->
+                <div class="treatment-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-cat="anti-aging">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="HIFU V-Shape Lifting" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute bottom-3 right-3 bg-stone-900/80 backdrop-blur text-white text-xs px-2.5 py-1 rounded-md font-medium flex items-center gap-1">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i> 90 Menit
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-xl text-stone-900 mb-1">Ultraformer HIFU 4D V-Line</h3>
+                            <p class="text-xs text-stone-500 mb-3">Pengencangan wajah tanpa operasi menggunakan gelombang ultrasonik terfokus ke lapisan SMAS.</p>
+                            <ul class="text-xs text-stone-600 space-y-1.5 mb-5">
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Mengencangkan pipi kendur & double chin</li>
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Merangsang kolagen alami hingga 6 bulan</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs line-through text-stone-400">Rp 2.500.000</span>
+                                <div class="text-xl font-bold text-brand-600">Rp 1.650.000</div>
+                            </div>
+                            <button onclick="openBookingModal('Ultraformer HIFU 4D V-Line')" class="px-4 py-2 bg-stone-900 hover:bg-brand-500 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                                Booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: DNA Salmon Booster -->
+                <div class="treatment-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-cat="laser">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" alt="DNA Salmon Booster" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Hot Promo</span>
+                        <span class="absolute bottom-3 right-3 bg-stone-900/80 backdrop-blur text-white text-xs px-2.5 py-1 rounded-md font-medium flex items-center gap-1">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i> 60 Menit
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-xl text-stone-900 mb-1">Meso Rejuran DNA Salmon</h3>
+                            <p class="text-xs text-stone-500 mb-3">Injeksi micro-polynucleotide untuk regenerasi jaringan sel kulit yang rusak, bopeng, dan pori besar.</p>
+                            <ul class="text-xs text-stone-600 space-y-1.5 mb-5">
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Memperbaiki tekstur kulit bopeng (scar)</li>
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Tingkatkan elastisitas & hidrasi maksimal</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs line-through text-stone-400">Rp 1.800.000</span>
+                                <div class="text-xl font-bold text-brand-600">Rp 1.199.000</div>
+                            </div>
+                            <button onclick="openBookingModal('Meso Rejuran DNA Salmon')" class="px-4 py-2 bg-stone-900 hover:bg-brand-500 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                                Booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6: Glowing Peeling Milk -->
+                <div class="treatment-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-cat="facial">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=800&q=80" alt="Milky Peeling Glow" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute bottom-3 right-3 bg-stone-900/80 backdrop-blur text-white text-xs px-2.5 py-1 rounded-md font-medium flex items-center gap-1">
+                            <i data-lucide="clock" class="w-3.5 h-3.5"></i> 45 Menit
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-xl text-stone-900 mb-1">Gentle Milk Glow Peeling</h3>
+                            <p class="text-xs text-stone-500 mb-3">Eksfoliasi kimia lembut dengan ekstrak asam laktat susu alami untuk kulit kusam dan sensitif.</p>
+                            <ul class="text-xs text-stone-600 space-y-1.5 mb-5">
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Aman untuk kulit kering & pemula</li>
+                                <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Mencerahkan tanpa efek mengelupas perih</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs line-through text-stone-400">Rp 350.000</span>
+                                <div class="text-xl font-bold text-brand-600">Rp 230.000</div>
+                            </div>
+                            <button onclick="openBookingModal('Gentle Milk Glow Peeling')" class="px-4 py-2 bg-stone-900 hover:bg-brand-500 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                                Booking
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-stone-500 text-sm mb-3">Bingung memilih perawatan yang cocok untuk kulit Anda?</p>
+                <button onclick="openBookingModal('Konsultasi Dokter Gratis (Rekomendasi Perawatan)')" class="inline-flex items-center gap-2 text-brand-600 font-bold hover:text-brand-500 underline text-sm">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    Konsultasikan Masalah Kulit Anda via WhatsApp Kami
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PROFIL DOKTER -->
+    <section id="dokter" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-500 text-xs font-bold uppercase tracking-widest block mb-2">Tim Medis Kami</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900">Ditangani Langsung Oleh Dokter Ahli</h2>
+                <p class="text-stone-600 mt-2 text-sm sm:text-base">Seluruh tindakan medis dan peresapan krim dipimpin oleh dokter bersertifikat dermatologi dan estetika.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Dokter 1 -->
+                <div class="text-center group">
+                    <div class="relative mb-5 mx-auto w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-stone-100 shadow-md group-hover:border-brand-300 transition-all">
+                        <img src="https://images.unsplash.com/photo-1594824813571-638f02614d3f?auto=format&fit=crop&w=600&q=80" alt="dr. Amanda Valerie" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900">dr. Amanda Valerie, Sp.D.V.E</h3>
+                    <p class="text-xs text-brand-600 font-semibold mb-2">Spesialis Dermatologi & Anti-Aging</p>
+                    <p class="text-xs text-stone-500 max-w-xs mx-auto">10+ tahun pengalaman penanganan acne parah, scar bopeng, dan peremajaan laser estetika.</p>
+                </div>
+
+                <!-- Dokter 2 -->
+                <div class="text-center group">
+                    <div class="relative mb-5 mx-auto w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-stone-100 shadow-md group-hover:border-brand-300 transition-all">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80" alt="dr. Kevin Christian" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900">dr. Kevin Christian, Dipl. AAAM</h3>
+                    <p class="text-xs text-brand-600 font-semibold mb-2">Aesthetic Physician & Injector</p>
+                    <p class="text-xs text-stone-500 max-w-xs mx-auto">Tersertifikasi American Academy of Aesthetic Medicine untuk teknik Botox & Filler natural contouring.</p>
+                </div>
+
+                <!-- Dokter 3 -->
+                <div class="text-center group">
+                    <div class="relative mb-5 mx-auto w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 border-stone-100 shadow-md group-hover:border-brand-300 transition-all">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80" alt="dr. Nadia Kartika" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900">dr. Nadia Kartika, M.Biomed</h3>
+                    <p class="text-xs text-brand-600 font-semibold mb-2">Laser & Melasma Specialist</p>
+                    <p class="text-xs text-stone-500 max-w-xs mx-auto">Fokus pada terapi pigmentasi stubborn, freckles, serta perbaikan skin barrier untuk kulit sensitif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: TESTIMONI & HASIL KLIEN -->
+    <section id="testimoni" class="py-20 bg-stone-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-1 text-amber-400 text-sm font-semibold mb-2">
+                    <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                    <span class="ml-2 text-stone-300 text-xs">Rated 4.9/5 dari 1.400+ Ulasan Google</span>
+                </div>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold">Kata Mereka yang Sudah Membuktikan</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testi 1 -->
+                <div class="p-6 rounded-2xl bg-stone-800/80 border border-stone-700 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-400 gap-1">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-sm text-stone-300 italic">"Jerawat hormonal saya yang sudah menahun akhirnya kempes dalam 3 minggu pakai paket Acne Treatment di sini. Dokternya edukatif banget, nggak maksa beli krim aneh-aneh!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-6 mt-6 border-t border-stone-700/60">
+                        <div class="w-10 h-10 rounded-full bg-brand-400 text-white font-bold flex items-center justify-center text-sm">SP</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Siti Pratiwi (26 thn)</h4>
+                            <p class="text-xs text-stone-400">Pasien Acne Treatment • Jakarta</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="p-6 rounded-2xl bg-stone-800/80 border border-stone-700 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-400 gap-1">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-sm text-stone-300 italic">"Pico Toning Laser-nya beneran nggak sakit, cuma kayak ada sensasi semut kecil. Setelah 2 sesi, flek hitam bekas matahari di pipi memudar banget. Make up jadi nempel sempurna."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-6 mt-6 border-t border-stone-700/60">
+                        <div class="w-10 h-10 rounded-full bg-brand-gold text-stone-900 font-bold flex items-center justify-center text-sm">RL</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Rina Lestari (34 thn)</h4>
+                            <p class="text-xs text-stone-400">Pasien Pico Laser • Tangerang</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="p-6 rounded-2xl bg-stone-800/80 border border-stone-700 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex text-amber-400 gap-1">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-sm text-stone-300 italic">"Tempatnya mewah, wangi aromaterapi, stafnya ramah-ramah banget. Treatment Diamond Facial-nya bikin komedo bersih tuntas tanpa bikin hidung merah-merah. Bakal langganan rutin!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-6 mt-6 border-t border-stone-700/60">
+                        <div class="w-10 h-10 rounded-full bg-brand-300 text-stone-900 font-bold flex items-center justify-center text-sm">DA</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Dian Anggraini (29 thn)</h4>
+                            <p class="text-xs text-stone-400">Pasien Glow Facial • Jakarta</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FAQ ACCORDION -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-brand-500 text-xs font-bold uppercase tracking-widest block mb-2">Pertanyaan Populer</span>
+                <h2 class="font-serif text-3xl font-bold text-stone-900">Kerap Ditanyakan Calon Pasien</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="border border-stone-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-4 text-left font-bold text-stone-900 flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>Apakah konsultasi dokter pertama kali dikenakan biaya?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-stone-500 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-sm text-stone-600 leading-relaxed border-t border-stone-100 bg-stone-50/50">
+                        <p class="pt-3"><strong>Gratis!</strong> Khusus pasien yang mengambil paket treatment apa pun di AuraGlow, sesi konsultasi dan pemeriksaan Skin Analysis 3D dengan dokter kami tidak dipungut biaya tambahan sama sekali.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="border border-stone-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-4 text-left font-bold text-stone-900 flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>Apakah produk dan treatment di sini aman untuk ibu hamil & menyusui?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-stone-500 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-sm text-stone-600 leading-relaxed border-t border-stone-100 bg-stone-50/50">
+                        <p class="pt-3">Sangat aman. Kami memiliki protokol khusus <em>Pregnancy-Safe</em> yang bebas dari Retinoid, Asam Salisilat dosis tinggi, maupun hidrokuinon. Harap informasikan kondisi kehamilan Anda ke dokter saat konsultasi.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="border border-stone-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-4 text-left font-bold text-stone-900 flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>Apakah treatment Pico Laser ada downtime (kulit mengelupas / bengkak)?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-stone-500 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-sm text-stone-600 leading-relaxed border-t border-stone-100 bg-stone-50/50">
+                        <p class="pt-3">Pico Toning kami memiliki downtime minimal. Wajah mungkin hanya mengalami kemerahan ringan selama 2–4 jam setelah tindakan, dan setelah itu Anda dapat beraktivitas seperti biasa dengan memakai tabir surya (sunscreen).</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="border border-stone-200 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-4 text-left font-bold text-stone-900 flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span>Bagaimana cara melakukan pembayaran?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-stone-500 transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-4 text-sm text-stone-600 leading-relaxed border-t border-stone-100 bg-stone-50/50">
+                        <p class="pt-3">Kami menerima berbagai metode pembayaran di klinik: Tunai, QRIS (BCA, Mandiri, GoPay, OVO), Kartu Debit, serta Cicilan 0% hingga 12 bulan menggunakan Kartu Kredit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: LOKASI & JAM OPERASIONAL -->
+    <section id="lokasi" class="py-20 bg-[#FAF7F4] border-t border-stone-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Info Klinik -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-brand-500 text-xs font-bold uppercase tracking-widest block">Kunjungi Klinik Kami</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900">Lokasi Nyaman & Akses Parkir Luas</h2>
+                    <p class="text-stone-600 text-sm leading-relaxed">Nikmati ruang tunggu privat dengan welcome drink hangat dan suasana aromaterapi menenangkan.</p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-stone-900 text-white flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-brand-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Alamat Lengkap</h4>
+                                <p class="text-xs text-stone-600 mt-0.5">Jl. Senopati Raya No. 45, Kebayoran Baru, Jakarta Selatan 12190</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-stone-900 text-white flex items-center justify-center shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5 text-brand-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Jam Operasional</h4>
+                                <p class="text-xs text-stone-600 mt-0.5">Senin – Sabtu: 09.00 – 20.00 WIB</p>
+                                <p class="text-xs text-stone-600">Minggu & Libur Nasional: 10.00 – 18.00 WIB</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-stone-900 text-white flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="w-5 h-5 text-brand-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Kontak & WhatsApp</h4>
+                                <p class="text-xs text-stone-600 mt-0.5">+62 812-3456-7890 (Customer Care)</p>
+                                <p class="text-xs text-stone-600">auraglowclinic@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-stone-900 hover:bg-stone-800 text-white text-xs font-semibold rounded-xl transition-all shadow">
+                            <i data-lucide="navigation" class="w-4 h-4 text-brand-gold"></i>
+                            <span>Buka di Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Google Maps Simulation / Iframe -->
+                <div class="lg:col-span-7 rounded-2xl overflow-hidden shadow-lg border border-stone-300 h-96 relative bg-stone-200">
+                    <iframe 
+                        title="Peta Lokasi Klinik"
+                        class="w-full h-full border-0" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2758287515093!2d106.80521407586835!3d-6.22731876098906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14db21cf371%3A0x6b63d91cf37db127!2sSenopati%20Jakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-950 text-stone-400 py-12 border-t border-stone-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-stone-800 flex items-center justify-center text-brand-gold">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </div>
+                <span class="font-serif text-lg font-bold text-white tracking-wide">AuraGlow Aesthetic Clinic</span>
+            </div>
+            
+            <p>&copy; 2026 AuraGlow Clinic. All rights reserved. Website template siap pakai.</p>
+
+            <div class="flex gap-4 text-stone-400">
+                <a href="#" class="hover:text-white transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================== -->
+    <!-- MODAL BOOKING INTERAKTIF (LANGSUNG TERHUBUNG KE WHATSAPP) -->
+    <!-- ============================================================== -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-stone-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-stone-100 animate-in fade-in zoom-in-95 duration-200">
+            <!-- Modal Header -->
+            <div class="bg-stone-900 text-white p-6 relative">
+                <button onclick="closeBookingModal()" class="absolute top-5 right-5 text-stone-400 hover:text-white p-1 rounded-full">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-brand-500/20 text-brand-gold text-[11px] font-semibold mb-2">
+                    <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                    Konfirmasi Cepat 5 Menit
+                </div>
+                <h3 class="font-serif text-2xl font-bold">Reservasi Jadwal Treatment</h3>
+                <p class="text-xs text-stone-300 mt-1">Isi formulir di bawah ini dan kami akan menyiapkan slot konsultasi Anda via WhatsApp.</p>
+            </div>
+
+            <!-- Modal Form Body -->
+            <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Nama Lengkap Pasien *</label>
+                    <input type="text" id="custName" required placeholder="Contoh: Sarah Nadia" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">No. WhatsApp *</label>
+                        <input type="tel" id="custPhone" required placeholder="0812xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Pilihan Layanan</label>
+                        <input type="text" id="custService" readonly class="w-full px-4 py-2.5 rounded-xl bg-stone-100 border border-stone-200 text-sm font-semibold text-brand-600 focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Rencana Tanggal *</label>
+                        <input type="date" id="custDate" required class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Pilihan Jam *</label>
+                        <select id="custTime" required class="w-full px-4 py-2.5 rounded-xl border border-stone-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <option value="Pagi (10:00 - 12:00)">Pagi (10:00 - 12:00)</option>
+                            <option value="Siang (13:00 - 15:00)">Siang (13:00 - 15:00)</option>
+                            <option value="Sore (16:00 - 18:00)">Sore (16:00 - 18:00)</option>
+                            <option value="Malam (18:30 - 20:00)">Malam (18:30 - 20:00)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">Keluhan Kulit (Opsional)</label>
+                    <textarea id="custNotes" rows="2" placeholder="Ceritakan keluhan kulit Anda (misal: flek menahun, bruntusan parah, dll)" class="w-full px-4 py-2 rounded-xl border border-stone-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm shadow-lg flex items-center justify-center gap-2 transition-all">
+                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                    <span>Kirim Reservasi ke WhatsApp Klinik</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <!-- ============================================================== -->
+    <div class="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+        <!-- Tooltip Label -->
+        <div class="hidden sm:flex items-center px-3.5 py-2 rounded-full bg-white shadow-xl border border-stone-200 text-xs font-semibold text-stone-800">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block mr-2 animate-pulse"></span>
+            Konsultasi Online Fast Response
+        </div>
+
+        <!-- WA Icon Button -->
+        <a href="https://wa.me/6285138774214?text=Halo%20Admin%20AuraGlow%20Clinic,%20saya%20ingin%20tanya%20jadwal%20dan%20promo%20perawatan." 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           aria-label="Hubungi kami via WhatsApp"
+           class="w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-2xl flex items-center justify-center hover:scale-110 transition-transform relative group">
+            <span class="absolute inset-0 rounded-full bg-emerald-400 opacity-40 pulse-effect"></span>
+            <i data-lucide="message-circle" class="w-7 h-7 relative z-10"></i>
+        </a>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Inisialisasi Lucide Icons
+        lucide.createIcons();
+
+        // 1. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // 2. Filter Kategori Treatment
+        function filterCategory(category) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            const cards = document.querySelectorAll('.treatment-card');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('bg-stone-900', 'text-white');
+                    btn.classList.remove('bg-white', 'text-stone-600', 'border');
+                } else {
+                    btn.classList.remove('bg-stone-900', 'text-white');
+                    btn.classList.add('bg-white', 'text-stone-600', 'border');
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-cat') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 3. Modal Booking Popup
+        const bookingModal = document.getElementById('bookingModal');
+        const custServiceInput = document.getElementById('custService');
+
+        function openBookingModal(serviceName = 'Konsultasi Perawatan') {
+            custServiceInput.value = serviceName;
+            
+            // Set default date minimal hari ini
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('custDate').min = today;
+            document.getElementById('custDate').value = today;
+
+            bookingModal.classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            bookingModal.classList.add('hidden');
+        }
+
+        // Tutup modal jika klik di luar area dialog
+        bookingModal.addEventListener('click', (e) => {
+            if (e.target === bookingModal) closeBookingModal();
+        });
+
+        // 4. Form Submit ke WhatsApp Generator
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const service = document.getElementById('custService').value;
+            const date = document.getElementById('custDate').value;
+            const time = document.getElementById('custTime').value;
+            const notes = document.getElementById('custNotes').value.trim() || '-';
+
+            // Ganti nomor WhatsApp tujuan di bawah ini (Format internasional tanpa +, misal: 6281234567890)
+            const targetPhone = "6281234567890";
+
+            const messageText = 
+`Halo Admin AuraGlow Clinic, saya ingin reservasi jadwal treatment:
+
+👤 *Nama Pasien:* ${name}
+📞 *No. Kontak:* ${phone}
+✨ *Pilihan Layanan:* ${service}
+📅 *Rencana Tanggal:* ${date}
+⏰ *Sesi Jam:* ${time}
+📝 *Keluhan/Catatan:* ${notes}
+
+Mohon konfirmasi ketersediaan jadwal dokter. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(messageText);
+            const waUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
+
+            // Buka WhatsApp di tab baru
+            window.open(waUrl, '_blank');
+
+            // Reset & tutup modal
+            closeBookingModal();
+            document.getElementById('bookingForm').reset();
+        }
+
+        // 5. Toggle FAQ Accordion
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            const isHidden = content.classList.contains('hidden');
+            
+            // Tutup semua FAQ lainnya
+            document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('#faq button i').forEach(ic => ic.style.transform = 'rotate(0deg)');
+
+            if (isHidden) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+</html>
